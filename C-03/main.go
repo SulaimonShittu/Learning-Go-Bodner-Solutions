@@ -1,36 +1,42 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	// E-01
 	greetings := []string{"Hello", "Hola", "नमस्कार", "こんにちは", "Привіт"}
-	firstSub := greetings[0:2:2]
-	secondSub := greetings[1:4:4]
-	thirdSub := greetings[3:]
-	fmt.Println(greetings, firstSub, secondSub, thirdSub)
+	sub1 := greetings[:2]
+	sub2 := greetings[1:4]
+	sub3 := greetings[3:]
+	sub4 := greetings[3:5]
+	fmt.Println(greetings, sub1, sub2, sub3, sub4)
 
 	// E-02
+	message := "Hi 👧 and 👦"
+	msgRunes := []rune(message)
+	fourthRune := msgRunes[4]
+	fmt.Println(string(fourthRune))
 
 	// E-03
 	type Employee struct {
-		FirstName string
-		LastName  string
-		Id        int
+		firstName string
+		lastName  string
+		id        int
 	}
-	sula := Employee{
+	firstInstance := Employee{
 		"Sulaimon",
 		"Shittu",
-		21,
+		22,
 	}
-	zami := Employee{
-		FirstName: "Zami",
-		LastName:  "Shittu",
-		Id:        17,
+	secondInstance := Employee{
+		firstName: "Zami",
+		lastName:  "Shittu",
+		id:        17,
 	}
-	var anu Employee
-	anu.FirstName = "Anuoluwapo"
-	anu.LastName = "Shittu"
-	anu.Id = 14
-	fmt.Println(sula, zami, anu)
+	var thirdInstance Employee
+	thirdInstance.firstName = "Sameeha"
+	thirdInstance.firstName = "Shittu"
+	thirdInstance.id = 14
 }
