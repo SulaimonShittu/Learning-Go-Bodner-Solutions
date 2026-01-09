@@ -39,4 +39,7 @@ func main() {
 	thirdInstance.firstName = "Sameeha"
 	thirdInstance.firstName = "Shittu"
 	thirdInstance.id = 14
+	fmt.Println(firstInstance)
+	fmt.Println(secondInstance)
+	fmt.Println(thirdInstance)
 }
