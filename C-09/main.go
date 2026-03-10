@@ -20,14 +20,14 @@ func main() {
 			continue
 		}
 		errs := ValidateEmployee(emp)
-		for newErr := range errs {
-			if errors.Is(err, invalidID) {
-				fmt.Printf("the employee has an: %v", newErr)
+		for _, newErr := range errs {
+			if errors.Is(newErr, invalidID) {
+				fmt.Printf("the employee has an: %v\n", newErr)
 				continue
 			}
 			var empFErr emptyFieldErr
-			if ok := errors.As(err, &empFErr); ok {
-				fmt.Printf("the employee's %v", newErr)
+			if ok := errors.As(newErr, &empFErr); ok {
+				fmt.Printf("the employee's %v\n", newErr)
 				continue
 			}
 		}
