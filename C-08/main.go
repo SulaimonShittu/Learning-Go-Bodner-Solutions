@@ -6,17 +6,11 @@ import (
 )
 
 func main() {
-	x := NewSLL(1)
-	x.Add(2)
-	x.Add(4)
-	x.Add(6)
-	x.Add(8)
 
-	fmt.Println(x.Index(2))
 }
 
 type Number interface {
-	~int | ~int8 | ~int16 | ~int32 | ~int64 | ~float32 | ~float64
+	~int | ~int8 | ~int16 | ~int32 | ~int64 | uint8 | uint16 | uint32 | uint64 | ~float32 | ~float64
 }
 
 func Doubler[T Number](val T) T {
@@ -50,8 +44,8 @@ func NewSLL[T comparable](val T) *SingleLinkedList[T] {
 }
 
 func (s *SingleLinkedList[T]) Add(val T) {
-	if s == nil {
-		s = &SingleLinkedList[T]{
+	if s.Next == nil {
+		s.Next = &SingleLinkedList[T]{
 			Value: val,
 		}
 		return
@@ -60,13 +54,21 @@ func (s *SingleLinkedList[T]) Add(val T) {
 }
 
 func (s *SingleLinkedList[T]) Insert(val T, pos int) {
+	if pos == 0 {
+		newSLL := *s
+		s.Value = val
+		s.Next = &newSLL
+		return
+	}
 	element := s
-	for range pos {
+	for range pos - 1 {
 		element = element.Next
 	}
-	element.Next = &SingleLinkedList[T]{
+	newSLL := &SingleLinkedList[T]{
 		Value: val,
 	}
+	newSLL.Next = element.Next
+	element.Next = newSLL
 }
 
 func (s *SingleLinkedList[T]) Index(val T) int {
